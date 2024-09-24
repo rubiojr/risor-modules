@@ -1,4 +1,4 @@
-package hello
+package charts
 
 import (
 	"context"
