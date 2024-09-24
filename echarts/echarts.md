@@ -1,12 +1,12 @@
 import { Callout } from 'nextra/components';
 
-# Charts
+# Echarts 
 
 <Callout type="info" emoji="ℹ️">
 This module is not included with Risor.
 </Callout>
 
-The `charts` module exposes a simple interface to create charts, powered by the great [go-echarts](https://github.com/go-echarts/go-echarts) library.
+The `echarts` module exposes a simple interface to create charts, powered by the great [go-echarts](https://github.com/go-echarts/go-echarts) library.
 
 ## Functions
 
@@ -24,7 +24,7 @@ data := {
   "serie B": ["3", "4", "5"],
 }
 
-charts.bar(
+echarts.bar(
 	"bar.html",
 	data,
 )
@@ -44,7 +44,7 @@ data := {
   "serie B": ["3", "4", "5"],
 }
 
-charts.bar(
+echarts.bar(
 	"bar.html",
 	data,
 	{
@@ -69,7 +69,7 @@ data := {
   "serie B": ["3", "4", "5"],
 }
 
-charts.line(
+echarts.line(
 	"line.html",
 	data,
 )
@@ -90,7 +90,7 @@ data := {
   "serie B": ["3", "4", "5"],
 }
 
-charts.line(
+echarts.line(
 	"line.html",
 	data,
 	{

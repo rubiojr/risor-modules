@@ -1,4 +1,4 @@
-package charts
+package echarts
 
 import (
 	"context"
@@ -12,7 +12,7 @@ import (
 
 func Module() *object.Module {
 	return object.NewBuiltinsModule(
-		"charts", map[string]object.Object{
+		"echarts", map[string]object.Object{
 			"bar":  object.NewBuiltin("bar", Bar),
 			"line": object.NewBuiltin("line", Line),
 		},

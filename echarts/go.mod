@@ -1,4 +1,4 @@
-module github.com/rubiojr/risor-modules/charts
+module github.com/rubiojr/risor-modules/echarts
 
 go 1.22
 
