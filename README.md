@@ -5,4 +5,4 @@ Additional and experimental Risor modules not included in the official [Risor](h
 To be used with [RSX](https://github.com/rubiojr/rsx).
 
 * [hello](/hello)   - Sample hello world module.
-* [charts](/charts) - Create animated charts.
+* [echarts](/echarts) - Create animated charts.
