@@ -107,8 +107,8 @@ func Line(ctx context.Context, args ...object.Object) object.Object {
 }
 
 func Bar(ctx context.Context, args ...object.Object) object.Object {
-	if err := require("charts.bar", 3, args); err != nil {
-		return err
+	if len(args) < 2 {
+		return object.Errorf("missing arguments, 2 required")
 	}
 
 	data, err := object.AsMap(args[1])
@@ -135,9 +135,12 @@ func Bar(ctx context.Context, args ...object.Object) object.Object {
 		return err
 	}
 
-	options, err := object.AsMap(args[2])
-	if err != nil {
-		return err
+	options := object.NewMap(map[string]object.Object{})
+	if len(args) > 2 {
+		options, err = object.AsMap(args[2])
+		if err != nil {
+			return err
+		}
 	}
 
 	title, err := strValue(options, "title", "Bar Chart")
