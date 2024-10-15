@@ -3,7 +3,7 @@ module github.com/rubiojr/risor-modules/sched
 go 1.22
 
 require (
-	github.com/reugn/go-quartz v0.13.0
+	codnect.io/chrono v1.1.3
 	github.com/risor-io/risor v1.6.1-0.20241002191325-24db18d54338
 	github.com/stretchr/testify v1.9.0
 )

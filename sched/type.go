@@ -3,62 +3,65 @@ package sched
 import (
 	"context"
 
-	"github.com/reugn/go-quartz/quartz"
+	"codnect.io/chrono"
 	"github.com/risor-io/risor/errz"
 	"github.com/risor-io/risor/object"
 	"github.com/risor-io/risor/op"
 )
 
-type schedObj struct {
-	sched quartz.Scheduler
+type task struct {
+	Name string
+	t    chrono.ScheduledTask
 }
 
-func (b *schedObj) SetAttr(name string, value object.Object) error {
-	return errz.TypeErrorf("type error: object has no attribute %q", name)
-}
-
-func (b *schedObj) IsTruthy() bool {
+func (t *task) IsTruthy() bool {
 	return true
 }
 
-func (b *schedObj) Cost() int {
+func (t *task) Cost() int {
 	return 0
 }
 
-func (b *schedObj) Equals(other object.Object) object.Object {
-	so, ok := other.(*schedObj)
+func (t *task) Equals(other object.Object) object.Object {
+	so, ok := other.(*task)
 	if !ok {
 		return object.False
 	}
-	ok = (*b == *so)
+	ok = (*t == *so)
 	return object.NewBool(ok)
 }
 
-func (b *schedObj) Inspect() string {
-	return "sched"
+func (t *task) Inspect() string {
+	return "sched.task"
 }
 
-func (b *schedObj) Type() object.Type {
-	return object.Type("sched")
+func (t *task) Type() object.Type {
+	return object.Type("sched.task")
 }
 
-func (b *schedObj) Interface() any {
-	return b.sched
+func (t *task) Interface() any {
+	return t
 }
 
-func (r *schedObj) RunOperation(opType op.BinaryOpType, right object.Object) object.Object {
-	return object.TypeErrorf("type error: unsupported operation for sched: %v", opType)
+func (t *task) RunOperation(opType op.BinaryOpType, right object.Object) object.Object {
+	return object.TypeErrorf("type error: unsupported operation for job: %v", opType)
 }
 
-func (s *schedObj) GetAttr(name string) (object.Object, bool) {
+func (t *task) GetAttr(name string) (object.Object, bool) {
 	switch name {
-	case "stop":
-		return object.NewBuiltin("sched.stop", func(ctx context.Context, args ...object.Object) object.Object {
-			s.sched.Stop()
-			s.sched.Wait(ctx)
+	case "cancel":
+		return object.NewBuiltin("sched.task.stop", func(ctx context.Context, args ...object.Object) object.Object {
+			t.t.Cancel()
 			return nil
 		}), true
+	case "is_running":
+		return object.NewBuiltin("sched.task.is_running", func(ctx context.Context, args ...object.Object) object.Object {
+			return object.NewBool(!t.t.IsCancelled())
+		}), true
 	}
-
 	return nil, false
+}
+
+func (t *task) SetAttr(name string, value object.Object) error {
+	return errz.TypeErrorf("type error: object has no attribute %q", name)
 }
