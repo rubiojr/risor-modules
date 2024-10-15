@@ -1,10 +1,14 @@
-module github.com/rubiojr/risor-modules/sched
+module github.com/risor-io/risor/modules/sched
 
-go 1.22
+go 1.22.0
+
+toolchain go1.23.2
+
+replace github.com/risor-io/risor => ../..
 
 require (
 	codnect.io/chrono v1.1.3
-	github.com/risor-io/risor v1.6.1-0.20241002191325-24db18d54338
+	github.com/risor-io/risor v1.7.0
 	github.com/stretchr/testify v1.9.0
 )
 
