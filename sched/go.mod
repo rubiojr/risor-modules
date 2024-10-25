@@ -1,8 +1,10 @@
-module github.com/rubiojr/risor-modules/sched
+module github.com/risor-io/risor/modules/sched
 
 go 1.22.0
 
 toolchain go1.23.2
+
+replace github.com/risor-io/risor => ../..
 
 require (
 	codnect.io/chrono v1.1.3
