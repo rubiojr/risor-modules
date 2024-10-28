@@ -6,3 +6,4 @@ To be used with [RSX](https://github.com/rubiojr/rsx).
 
 * [hello](/hello)   - Sample hello world module.
 * [echarts](/echarts) - Create animated charts.
+* [sched](/sched) - A simple interface to schedule task. ([Upstreamed](https://github.com/risor-io/risor/pull/283))
