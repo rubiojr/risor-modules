@@ -47,13 +47,13 @@ func Line(ctx context.Context, args ...object.Object) object.Object {
 	series := map[string][]opts.LineData{}
 	for k, v := range data.Value() {
 		items := make([]opts.LineData, 0)
-		i, err := object.AsStringSlice(v)
+		i, err := object.AsList(v)
 		if err != nil {
 			return err
 		}
 
 		title := object.NewString(k).String()
-		for _, v := range i {
+		for _, v := range i.Value() {
 			items = append(items, opts.LineData{Value: v})
 		}
 		series[title] = items
@@ -118,13 +118,13 @@ func Bar(ctx context.Context, args ...object.Object) object.Object {
 	series := map[string][]opts.BarData{}
 	for k, v := range data.Value() {
 		items := make([]opts.BarData, 0)
-		i, err := object.AsStringSlice(v)
+		i, err := object.AsList(v)
 		if err != nil {
 			return err
 		}
 
 		title := object.NewString(k).String()
-		for _, v := range i {
+		for _, v := range i.Value() {
 			items = append(items, opts.BarData{Value: v})
 		}
 		series[title] = items
